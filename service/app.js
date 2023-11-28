@@ -1,21 +1,44 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors')
-
-require('dotenv').config()
+const dotenv = require('dotenv')
+const mysql = require('mysql2');
 
 const app = express()
+dotenv.config();
 app.use(express.json())
-app.use(cors)
+app.use(cors())
 app.use(morgan('dev'))
 
+let conn =null
+const initMySQL = async () => {
+  conn = await mysql.createConnection({
+    host: 'db', // หรือใส่เป็น localhost ก็ได้
+    user: 'root',
+    password: 'root',
+    database: 'remo_db'
+  })
+}
 
-app.get("/", ( req, res )=>{
-    res.json({
-        data:"message from service"
-    })
+app.get('/first', (req, res) => {
+  res.json({
+    msg:'first call...'
+  })
 })
 
-const port = process.env.PORT || 4000
+app.get('/test', async (req, res) => {
+  conn.query(
+    'SELECT * FROM test',
+    function(err, results, fields) {
+      res.json({
+        data:results
+      })
+    }
+  )
+})
 
-app.listen(port,()=> console.log(`start http://localhost:${port}`))
+const port = 8000;
+app.listen(port, async () => {
+  await initMySQL()
+  console.log(`Server running at http://localhost:${port}/`)
+})
