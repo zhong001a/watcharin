@@ -1,0 +1,42 @@
+const express = require('express');
+const cors = require('cors')
+const dotenv = require('dotenv')
+const mysql = require('mysql2')
+dotenv.config();
+const { Sequelize } = require('sequelize');
+const app = express()
+app.use(express.json())
+app.use(cors())
+
+// const userRouter = require('./route/user-route/userRoute')
+
+// app.use('/api/user', userRouter);
+
+// app.get('/first', (req, res) => {
+//   res.json({
+//     msg:'first call...'
+//   })
+// })
+
+const sequelize = new Sequelize('remo_db', 'root', 'root', {
+  host: 'db',
+  dialect: 'mysql'
+})
+// let conn =null
+// const initMySQL = async () => {
+//   conn = await mysql.createConnection({
+//     host: 'db', // หรือใส่เป็น localhost ก็ได้
+//     user: 'root',
+//     password: 'root',
+//     database: 'remo_db'
+//   })
+// }
+
+
+
+const port = 8000;
+app.listen(port, async () => {
+  await sequelize.sync()
+  // await initMySQL()
+  console.log(`Server running at http://localhost:${port}/`)
+})

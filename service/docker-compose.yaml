@@ -5,6 +5,9 @@ services:
     build: .
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+      - phpmyadmin
   db:
     image: mysql:latest
     container_name: db
@@ -12,6 +15,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root # กำหนด user ของ root mysql
       MYSQL_DATABASE: remo_db # กำหนด database เริ่มต้นของ mysql
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:

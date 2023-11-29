@@ -10,7 +10,7 @@ COPY package.json ./
 RUN npm install
 
 # copy file index.js เข้ามาใน container
-COPY app.js ./
+COPY . ./
 
 # ทำการปล่อย port 8000 ออกมาให้ access ได้
 EXPOSE 8000
