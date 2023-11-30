@@ -6,14 +6,44 @@ const { Phone, Capacity, Brand } = db
 
 db.sequelize.sync();
 
-productRoute.get('/product', async (req, res) => {
+productRoute.get('/allproduct', async (req, res) => {
+  let brandName = req.query.brand;
+
   try {
 
-    const products = await Phone.findAll()
-    return res.json(products)
+    const phonesData = await Phone.findAll({
+      attributes: ['id','model'],
+      include: [
+        {
+          model: Brand,
+          attributes: ['name'],
+        },
+        {
+          model: Capacity,
+          attributes: ['id','size','release_price','current_price'],
+        },
+      ],
+    });
+
+    const data = (phonesData.map((item)=>{
+      const phones = {
+        id:item.id,
+        model: item.model,
+        brand: item.brand.name,
+        capacities: item.capacities
+      }
+      return phones
+    }))
+
+    return res.json({
+      message: "success",
+      status: 200,
+      data
+    })
+
   } catch (error) {
     res.json({
-      msg: error
+      msg: error.message
     })
   }
 });
@@ -23,18 +53,35 @@ productRoute.get('/phone/:id', async (req, res) => {
     try {
       const result = await Phone.findOne({
         where: { id: phoneId },
-        include: {
-          model: Brand, 
-        },
+        include: [
+          {
+            model: Brand,
+            attributes: ['name'],
+
+          },
+          {
+            model: Capacity,
+            attributes: ['size'],
+            where:{ id : 1}
+          },
+        ],
+
+        
       });
 
       if (!result) {
         return res.status(404).json({ error: 'Phone not found' });
       }
+      const data = {
+        model: result.model,
+        brand: result.brand ? result.brand.name : null,
+        size: result.capacities[0].size
+      }
 
       res.json({
-        phone: result,
-        brandName: result.brand ? result.brand.name : null,
+
+        data
+
       });
     } catch (error) {
       console.error(error);
@@ -42,62 +89,6 @@ productRoute.get('/phone/:id', async (req, res) => {
     }
   }
 )
-
-productRoute.get('/brand/:name', async (req, res) => {
-  const brandName = req.params.name
-    try {
-      const phonesInBrand = await Phone.findAll({
-        attributes: ['model'],
-        include: [
-          {
-            model: Brand,
-            attributes: ['name'],
-            where: { name: brandName },
-          },
-          {
-            model: Capacity,
-            attributes: ['size'],
-          },
-        ],
-      });
-
-      res.json({
-        phones: phonesInBrand,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message
-      })
-      
-    }
-  }
-)
-
-// productRoute.get('/:id/capacity', async (req, res) => {
-//   try {
-//     const phoneId = req.params.id
-
-//     const result = await Phone.findOne({
-//       where: { id: phoneId },
-//       include: {
-//         model: Capacity,
-//         where: { size: "256" }
-//       },
-//       raw: true
-//     })
-//     const data = {
-//       name: result.name,
-//       capacity: result['capacities.size'],
-//       price: result['capacities.current_price'],
-//     }
-//     res.json({
-//       data
-//     })
-//   } catch (err) {
-//     console.error(err)
-//     res.json(err)
-//   }
-// })
 
 
 productRoute.post("/create", async (req, res) => {

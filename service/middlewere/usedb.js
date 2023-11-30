@@ -1,16 +1,16 @@
 const { Sequelize } = require('sequelize');
 
 // use in docker
-const sequelize = new Sequelize('remo_db', 'root', 'root', {
-  host: 'db',
-  dialect: 'mysql'
-})
-
-// use localhot
-// const sequelize = new Sequelize('test', 'root', '', {
-//   host: 'localhost',
+// const sequelize = new Sequelize('remo_db', 'root', 'root', {
+//   host: 'db',
 //   dialect: 'mysql'
 // })
+
+// use localhot
+const sequelize = new Sequelize('test', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql'
+})
 
 
 const db = {};
