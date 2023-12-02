@@ -1,0 +1,70 @@
+[   
+    {
+        "model": "Iphone 13",
+        "brand": "Apple",
+        "release_date":"2021.09.24",
+        "capacities": [
+            {
+                "size": "128GB",
+                "release_price": 24900,
+                "second_price": 13000
+            },
+            {
+                "size": "256GB",
+                "release_price": 28900,
+                "second_price": 14000
+            }
+        ]
+    },
+    {
+        "model": "Iphone 13 Pro",
+        "brand": "Apple",
+        "release_date":"2021.09.24",
+        "capacities": [
+            {
+                "size": "128GB",
+                "release_price": 37000,
+                "second_price": 17000
+            },
+            {
+                "size": "256GB",
+                "release_price": 41000,
+                "second_price": 18000
+            }
+        ]
+    },
+    {
+        "model": "Galaxy S23",
+        "brand": "Sumsung",
+        "release_date":"2023.10.04",
+        "capacities": [
+            {
+                "size": "128GB",
+                "release_price": 29900,
+                "second_price": 13500
+            },
+            {
+                "size": "256GB",
+                "release_price": 32900,
+                "second_price": 14500
+            }
+        ]
+    },
+    {
+        "model": "Galaxy S23 Ultra",
+        "brand": "Sumsung",
+        "release_date":"2023.10.04",
+        "capacities": [
+            {
+                "size": "256GB",
+                "release_price": 41900,
+                "second_price": 20000
+            },
+            {
+                "size": "512GB",
+                "release_price": 47900,
+                "second_price": 22000
+            }
+        ]
+    }
+]

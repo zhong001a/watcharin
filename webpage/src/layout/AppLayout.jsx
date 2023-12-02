@@ -13,7 +13,7 @@ const AppLayout = () => {
           justifyContent:'center'
       }}>
 
-        <Box sx={{ width:'100%',maxWidth: '1000px', bgcolor: 'brown' }}>
+        <Box sx={{ width:'100%',maxWidth: '1000px',bgcolor:'#e8e8e8'}}>
            <Outlet />
         </Box>
       </Box>

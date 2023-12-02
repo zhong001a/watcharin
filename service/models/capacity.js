@@ -4,9 +4,8 @@ module.exports = (sequelize, DataTypes) => {
       {
   
         size: { type: DataTypes.STRING(50), allowNull: false },
-
         release_price:{ type: DataTypes.INTEGER(), allowNull: true },
-        current_price:{ type: DataTypes.INTEGER(), allowNull: true },
+        second_price:{ type: DataTypes.INTEGER(), allowNull: true },
 
       },
       {

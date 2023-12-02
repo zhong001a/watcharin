@@ -8,12 +8,14 @@ app.use(express.json())
 app.use(cors())
 
 const productRoute = require('./route/product-route/productRoute')
+const offerRoute = require('./route/offer-route/offerRoute')
 
 app.use('/api/product', productRoute);
+app.use('/api/offer', offerRoute);
 
 app.get('/first', (req, res) => {
   res.json({
-    msg:'first call...'
+    msg: 'first call...'
   })
 })
 

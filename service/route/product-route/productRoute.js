@@ -6,21 +6,23 @@ const { Phone, Capacity, Brand } = db
 
 db.sequelize.sync();
 
+productRoute.get('/alltest', async (req, res) => {
+  const phone = await Phone.findAll({})
+  res.json(phone)
+})
+
 productRoute.get('/allproduct', async (req, res) => {
-  let brandName = req.query.brand;
 
   try {
-
     const phonesData = await Phone.findAll({
-      attributes: ['id','model'],
       include: [
         {
           model: Brand,
-          attributes: ['name'],
+
         },
         {
           model: Capacity,
-          attributes: ['id','size','release_price','current_price'],
+          attributes: ['id','size','release_price','second_price'],
         },
       ],
     });
@@ -29,7 +31,9 @@ productRoute.get('/allproduct', async (req, res) => {
       const phones = {
         id:item.id,
         model: item.model,
+        image: item.image,
         brand: item.brand.name,
+        release_date:item.release_date,
         capacities: item.capacities
       }
       return phones
@@ -48,25 +52,60 @@ productRoute.get('/allproduct', async (req, res) => {
   }
 });
 
-productRoute.get('/phone/:id', async (req, res) => {
-  const phoneId = req.params.id
+productRoute.get('/brand', async (req, res) => {
+  const brand = await Brand.findAll({});
+  res.json({
+    status: 200,
+    message:"success",
+    data: brand
+    })
+})
+
+productRoute.post('/brand/create', async (req, res) => {
+  const data = req.body;
+  
+  const [brand, created] = await Brand.findOrCreate({
+    where: { name: data.name,
+      image: data.image
+     },
+    defaults: { name: data.name }
+  });
+
+  // const [createBrand,created] = await Brand.findOrCreate({
+  //   name: data.name,
+  //   image: data.image
+  // });
+
+  res.json({
+    status: 200,
+    message:"success",
+    data: created
+    })
+})
+
+productRoute.get('/phone', async (req, res) => {
+   let phoneId = req.query.id;
+
+    if(!phoneId){
+      phoneId = await Phone.findOne({
+        attributes: ['id']
+      });
+    }
     try {
-      const result = await Phone.findOne({
-        where: { id: phoneId },
+      const result = await Phone.findOne({ 
+        where: { id:phoneId},
         include: [
           {
             model: Brand,
             attributes: ['name'],
-
+           
           },
           {
             model: Capacity,
             attributes: ['size'],
-            where:{ id : 1}
-          },
-        ],
 
-        
+          }
+        ],
       });
 
       if (!result) {
@@ -75,24 +114,26 @@ productRoute.get('/phone/:id', async (req, res) => {
       const data = {
         model: result.model,
         brand: result.brand ? result.brand.name : null,
-        size: result.capacities[0].size
+    
       }
 
       res.json({
-
-        data
-
+        message:"success",
+        status: 200,
+        data:result
       });
+
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.json({
+        error:error.message
+      })
     }
   }
 )
 
-
 productRoute.post("/create", async (req, res) => {
   const phoneData = req.body;
+
   try {
     const phone = await Phone.create(phoneData)
 
@@ -102,17 +143,16 @@ productRoute.post("/create", async (req, res) => {
     });
 
     await phone.setBrand(brand.id);
+    const capacities = phoneData.capacities;
 
-    const capacities = phoneData.capacity;
-    let createCapacities = []
-
+    let createCapacities=[];
     capacities.map(async (capacity) => {
+      createCapacities.push(capacity.size);
       const data = capacity
       data.phoneId = phone.id
       const newCapacity = await Capacity.upsert(data)
-      createCapacities.push(newCapacity)
+      createCapacities.push(newCapacity);
     })
-
 
     res.json({
       phone,
@@ -126,31 +166,7 @@ productRoute.post("/create", async (req, res) => {
       error: error.message
     })
   }
-
 });
-
-productRoute.post("/brand", async (req, res) => {
-  const brandData = req.body;
-  try {
-    // Find or create a user with the given username
-    const [brand, created] = await Brand.findOrCreate({
-      where: { name: brandData.name },
-      defaults: brandData // Defaults will be used if the user doesn't exist
-    });
-
-    res.json({
-      brand,
-      created
-    });
-
-  } catch (error) {
-    res.json({
-      errr: error
-    })
-  }
-
-});
-
 
 
 module.exports = productRoute;
