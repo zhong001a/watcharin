@@ -26,7 +26,7 @@ const PhoneCard = ({phone}) => {
           fontSize:'18px',
           fontWeight:600
         }}>
-            {phone.model}
+            {phone.name}
         </Typography>
       
     </Box>

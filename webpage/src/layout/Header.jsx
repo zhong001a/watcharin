@@ -10,7 +10,7 @@ const Header = () => {
 
         <Box sx={{
             width: '100%',
-            maxWidth:'1000px',
+            maxWidth:'1240px',
             marginBottom:'40px',
         }}>
             <Box sx={{

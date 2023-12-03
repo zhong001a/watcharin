@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { useBrand } from '../../hook/usePhonesData'
 
@@ -11,11 +11,12 @@ const BrandIList = ({ select, setSelect }) => {
                 sx={{
                     width: '105px',
                     height: '80px',
-                    paddingX:'10px',
+                    paddingX:'15px',
                     paddingY: '10px',
+                    paddingBottom:'15px',
                     bgcolor: text===select?'#fbfbfb':null,
                     borderTop:'5px solid #e8e8e8',
-                    borderColor: text===select?'#000':null,
+                    borderColor: text===select?'#161c24':null,
                 }}
                 onClick={()=>{
                     setSelect(text)

@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Iphone 13",
+    "brand": "Apple",
+    "image": "https://remobie.s3.ap-southeast-1.amazonaws.com/1644463964410.jpg",
+    "release_date": "2021.09.24",
+    "capacities": [
+      {
+        "size": "128GB",
+        "release_price": 24900,
+        "second_price": 13000
+      },
+      {
+        "size": "256GB",
+        "release_price": 28900,
+        "second_price": 14000
+      }
+    ]
+  },
+  {
+    "name": "Iphone 13 Pro",
+    "brand": "Apple",
+    "image": "https://remobie.s3.ap-southeast-1.amazonaws.com/1644464009394.jpg",
+    "release_date": "2021.09.24",
+    "capacities": [
+      {
+        "size": "128GB",
+        "release_price": 37000,
+        "second_price": 17000
+      },
+      {
+        "size": "256GB",
+        "release_price": 41000,
+        "second_price": 18000
+      }
+    ]
+  },
+  {
+    "name": "Galaxy S23",
+    "brand": "Sumsung",
+    "image": "https://remobie.s3.ap-southeast-1.amazonaws.com/1689828852786.png",
+    "release_date": "2023.10.04",
+    "capacities": [
+      {
+        "size": "128GB",
+        "release_price": 29900,
+        "second_price": 13500
+      },
+      {
+        "size": "256GB",
+        "release_price": 32900,
+        "second_price": 14500
+      }
+    ]
+  },
+  {
+    "name": "Galaxy S23 Ultra",
+    "brand": "Sumsung",
+    "image": "https://remobie.s3.ap-southeast-1.amazonaws.com/1689829033494.png",
+    "release_date": "2023.10.04",
+    "capacities": [
+      {
+        "size": "256GB",
+        "release_price": 41900,
+        "second_price": 20000
+      },
+      {
+        "size": "512GB",
+        "release_price": 47900,
+        "second_price": 22000
+      }
+    ]
+  },
+  {
+    "name": "Apple",
+    "image": "https://www.remobie.com/static/images/brand/apple.png"
+  },
+  {
+    "name": "Sumsung",
+    "image": "https://www.remobie.com/static/images/brand/samsung_logo_PNG8.png"
+  },
+
+  {
+    "capacity": "128GB",
+    "model": "LL",
+    "warranty": "ประกันเหลือมากกว่า 4 เดือน",
+    "divice": "ไม่มีรอยขีดข่วน",
+    "screen": "หน้าจอมีรอยบางๆ",
+    "accessories": ["ไม่มีสายชาร์จ"],
+    "problems": ["wifi Bluetooth GPS"],
+    "display": "จุด Bright / ฝุ่นในจอ / ขอบจอเงา",
+    "name": "Iphone 13",
+    "brand": "Apple",
+    "sell_price": {
+      "size": "128GB",
+      "release_price": 24900,
+      "second_price": 13000
+    },
+    "seller": "watchar",
+    "phone_no": "08445533"
+  },
+
+  { "model": "TH LL OTHER" }
+]

@@ -1,16 +1,27 @@
-import { Box } from "@mui/material";
+import { Box,Typography } from "@mui/material";
 import React from "react";
 
 const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 3,
-      }}
-    >
-      {textTitle}
+    <>
+    <Box sx={{
+      width:'100%',
+      bgcolor:'#69afd1',
+      paddingY:'10px',
+      borderRadius:'5px',
+      boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+    }}>
+      <Typography sx={{
+        fontSize:'18px',
+        fontWeight:500,
+        paddingLeft:'10px'
+      }}>
+        {textTitle }
+   
+      </Typography>
+    </Box>
+    <Box>
       {data?.map((capacity,index)=>(
         <Box  
           key={index}
@@ -50,6 +61,7 @@ const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
         </Box>
       ))}
     </Box>
+    </>
   );
 };
 

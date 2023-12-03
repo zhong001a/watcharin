@@ -1,6 +1,6 @@
 [   
     {
-        "model": "Iphone 13",
+        "name": "Iphone 13",
         "brand": "Apple",
         "image":"https://remobie.s3.ap-southeast-1.amazonaws.com/1644463964410.jpg",
         "release_date":"2021.09.24",
@@ -18,7 +18,7 @@
         ]
     },
     {
-        "model": "Iphone 13 Pro",
+        "name": "Iphone 13 Pro",
         "brand": "Apple",
         "image":"https://remobie.s3.ap-southeast-1.amazonaws.com/1644464009394.jpg",
         "release_date":"2021.09.24",
@@ -36,7 +36,7 @@
         ]
     },
     {
-        "model": "Galaxy S23",
+        "name": "Galaxy S23",
         "brand": "Sumsung",
         "image":"https://remobie.s3.ap-southeast-1.amazonaws.com/1689828852786.png",
         "release_date":"2023.10.04",
@@ -54,7 +54,7 @@
         ]
     },
     {
-        "model": "Galaxy S23 Ultra",
+        "name": "Galaxy S23 Ultra",
         "brand": "Sumsung",
         "image":"https://remobie.s3.ap-southeast-1.amazonaws.com/1689829033494.png",
         "release_date":"2023.10.04",
@@ -78,5 +78,30 @@
     {
         "name":"Sumsung",
         "image":"https://www.remobie.com/static/images/brand/samsung_logo_PNG8.png"
+    },
+    {
+        
+        "capacity": "256",
+        "name": "iphone 13",
+        "brand":"apple",
+        "sell_price":20000,
+        "model":"TH",
+        "warranty": "ประกันเหลือมากกว่า 4 เดือน",
+        "divice": "ไม่มีรอยขีดข่วน",
+        "screen": "หน้าจอไม่มีรอย",
+        "seller":"xxds",
+        "phone_no":"052335544",
+        "accessories": [
+            "ไม่มีหัวชาร์จ",
+            "ไม่มีสายชาร์จ",
+            "ไม่มีกล่อง"
+        ],
+        "problems": [
+            "แบตเตอรี่ ต่ำกว่า 80%",
+            "ระบบสัมผัส"
+        ],
+        "display": "แสดงภาพหน้าจอปกติ"
+    
     }
+    ,{ "model" :"TH LL OTHER" }
 ]

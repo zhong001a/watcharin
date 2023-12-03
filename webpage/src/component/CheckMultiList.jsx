@@ -5,18 +5,26 @@ const CheckMultiList = ({ textTitle, data, setProblem, choosed }) => {
   const isSelected = (item) => choosed?.some((c) => c === item );
  
   return (
+    <>
+    {textTitle}
     <Box
       sx={{
-        display: "flex",
-        gap: 3,
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 4fr)",
+        gap:1
       }}
     >
-      {textTitle}:
+      
       {data &&
         data.map((text, index) => (
           <Typography
             sx={{
-
+              minWidth:'160px',
+              maxWidth:'170px',
+              width:'100%',
+              display:'flex',
+              alignItems:"center",
+              justifyContent:'flex-start',
               padding: "10px 15px",
               bgcolor: '#fff',
               border:'2px solid #161c24',
@@ -34,6 +42,7 @@ const CheckMultiList = ({ textTitle, data, setProblem, choosed }) => {
           </Typography>
         ))}
     </Box>
+    </>
   );
 };
 

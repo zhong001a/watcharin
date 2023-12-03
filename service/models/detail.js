@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const detail = sequelize.define(
     'detail',
     {
+      model: { type: DataTypes.STRING(128), allowNull: false },
       warranty: { type: DataTypes.STRING(128), allowNull: false },
       divice: { type: DataTypes.STRING(128), allowNull: true },
       screen: { type: DataTypes.STRING(128), allowNull: true },

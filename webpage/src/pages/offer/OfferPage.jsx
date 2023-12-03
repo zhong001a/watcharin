@@ -1,29 +1,29 @@
 import { Box } from "@mui/material";
-import React, {  useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { useSinglePhone } from "../../hook/usePhonesData";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import PhoneInfo from "./PhoneInfo";
 import CheckBox from "../../component/CheckBox";
 import {
-  warranty,
   divice,
   screen,
   display,
   accessories,
   problem,
+  model,
 } from "./Infomations";
 import CheckList from "../../component/CheckList";
 import CheckMultiList from "../../component/CheckMultiList";
 import IButton from "../../component/IButton";
+import ConfirmOffer from "./ConfirmOffer";
 
 const initialState = {
   capacity: "",
-  warranty: "",
+  model: "",
   divice: "",
   screen: "",
-  accessories:[],
+  accessories: [],
   problems: [],
-  
 };
 
 const reducer = (state, action) => {
@@ -35,17 +35,13 @@ const reducer = (state, action) => {
       const existProblem = state.problems.indexOf(action.payload);
 
       let updatedProblems;
- 
+
       if (existProblem !== -1) {
         updatedProblems = state.problems.filter(
           (problem) => problem !== action.payload
         );
-        
-      } 
-      else
-      {
+      } else {
         updatedProblems = [...state.problems, action.payload];
-
       }
       if (updatedProblems.includes("ไม่มีปัญหา")) {
         updatedProblems = [];
@@ -53,7 +49,7 @@ const reducer = (state, action) => {
       return { ...state, problems: updatedProblems };
 
     case "setAccessory":
-      const existAccessory= state.accessories.indexOf(action.payload);
+      const existAccessory = state.accessories.indexOf(action.payload);
       let updataAccesories;
 
       if (existAccessory !== -1) {
@@ -74,7 +70,8 @@ const OfferPage = () => {
   const [params, setParams] = useSearchParams();
   const id = params.get("id");
   const { data } = useSinglePhone(id);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
 
   const [statedata, dispatch] = useReducer(reducer, initialState);
 
@@ -90,20 +87,23 @@ const OfferPage = () => {
     dispatch({ type: "setAccessory", payload: valume });
   };
 
-  const createOfferData = async(stateData)=>{
- 
-    if (stateData) {
-      navigate('/offer/detail', { state: stateData })
-    }
-  }
+  const [ isOpen, setIsOpen] = useState(false)
+  const createOfferData = (stateData) => {
+
+    setIsOpen(true);
+    // if (stateData) {
+    //   navigate("/offer/detail", { state: { stateData, phoneData: data } });
+    // }
+  };
+
 
 
   return (
     <Box sx={{ display: "flex" }}>
       <Box
         sx={{
-          bgcolor: "brown",
-          flexBasis: "300px",
+          bgcolor: "#fff",
+          flexBasis: "250px",
         }}
       >
         <PhoneInfo phone={data} />
@@ -112,9 +112,12 @@ const OfferPage = () => {
       <Box
         sx={{
           flex: "1 1",
-          bgcolor: "#fbfbfb",
+          bgcolor: "#fff",
+          justifyContent:'center'
         }}
       >
+      <ConfirmOffer isOpen={isOpen} setIsOpen={setIsOpen}/>
+
         <CheckBox
           textTitle={"ความจุ"}
           data={data.capacities}
@@ -124,11 +127,11 @@ const OfferPage = () => {
         />
 
         <CheckList
-          textTitle={"ประกัน"}
-          data={warranty}
+          textTitle={"โมเดล"}
+          data={model}
           selected={selected}
-          choosed={statedata.warranty}
-          field={"warranty"}
+          choosed={statedata.model}
+          field={"model"}
         />
 
         <CheckList
@@ -140,7 +143,7 @@ const OfferPage = () => {
         />
 
         <CheckList
-          textTitle={"จอ"}
+          textTitle={"หน้าจอ"}
           data={screen}
           selected={selected}
           choosed={statedata.screen}
@@ -154,24 +157,29 @@ const OfferPage = () => {
           field={"display"}
         />
 
-
         <CheckMultiList
           textTitle={"อุปกรณ์"}
           setProblem={setAccessory}
           data={accessories}
           choosed={statedata.accessories}
         />
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateRows: "repeat(3, 1fr)",
+          }}
+        >
+          <CheckMultiList
+            textTitle={"ปัญหาตัวเครื่อง"}
+            setProblem={setProblem}
+            data={problem}
+            choosed={statedata.problems}
+          />
+        </Box>
 
-
-        <CheckMultiList
-          textTitle={"ปัญหาตัวเครื่อง"}
-          setProblem={setProblem}
-          data={problem}
-          choosed={statedata.problems}
-        />
-
-        <IButton onClick={()=>createOfferData(statedata)} url={''} >เสนอราคา</IButton>
-
+        <IButton onClick={() => createOfferData(statedata)} url={""}>
+          เสนอราคา
+        </IButton>
       </Box>
     </Box>
   );

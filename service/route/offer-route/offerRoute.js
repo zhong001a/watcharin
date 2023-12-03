@@ -38,38 +38,45 @@ offerRoute.post("/create", async (req, res) => {
   const dataBody = req.body;
 
   const createOffer = {
-    model: dataBody.model,
+    name: dataBody.name,
     brand: dataBody.brand,
     capacity: dataBody.capacity,
     seller:dataBody.seller,
-    sell_price: dataBody.sell_price
+    sell_price: dataBody.sell_price,
+    phone_no: dataBody.phone_no
   }
   const createDetail = {
+    model:dataBody.model,
     warranty:dataBody.warranty,
     divice: dataBody.divice,
     screen: dataBody.screen,
     display: dataBody.display,
     accessories: dataBody.accessories,
-    problems:dataBody.problems
   }
 
-  try {
-
-    const createdDetail = await Detail.create(createDetail);
-    const createdOffer = await Offer.create(createOffer);
-    const createdProblem = await Problem.create({
-      name: dataBody.problems,
-    });
-
-    await createdDetail.setOffer(createdOffer);
-    await createdProblem.setOffer(createdOffer);
-
-
-    res.json({
+     res.json({
       message:"success",
       status:201,
-      data:createdOffer
+      data:createOffer
     })
+  try {
+
+    // const createdDetail = await Detail.create(createDetail);
+    // const createdOffer = await Offer.create(createOffer);
+    // const createdProblem = await Problem.create({
+    //   name: dataBody.problems,
+    // });
+
+    // await createdDetail.setOffer(createdOffer);
+    // await createdProblem.setOffer(createdOffer);
+
+    // res.json({
+    //   message:"success",
+    //   status:201,
+    //   data:createdOffer
+    // })
+    
+ 
 
   } catch (error) {
     res.json({

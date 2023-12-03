@@ -18,22 +18,23 @@ productRoute.get('/allproduct', async (req, res) => {
       include: [
         {
           model: Brand,
+          attributes: ['name'],
 
         },
         {
           model: Capacity,
-          attributes: ['id','size','release_price','second_price'],
+          attributes: ['id', 'size', 'release_price', 'second_price'],
         },
       ],
     });
 
-    const data = (phonesData.map((item)=>{
+    const data = (phonesData.map((item) => {
       const phones = {
-        id:item.id,
-        model: item.model,
+        id: item.id,
+        name: item.name,
         image: item.image,
         brand: item.brand.name,
-        release_date:item.release_date,
+        release_date: item.release_date,
         capacities: item.capacities
       }
       return phones
@@ -56,79 +57,78 @@ productRoute.get('/brand', async (req, res) => {
   const brand = await Brand.findAll({});
   res.json({
     status: 200,
-    message:"success",
+    message: "success",
     data: brand
-    })
+  })
 })
 
 productRoute.post('/brand/create', async (req, res) => {
   const data = req.body;
-  
-  const [brand, created] = await Brand.findOrCreate({
-    where: { name: data.name,
-      image: data.image
-     },
-    defaults: { name: data.name }
-  });
 
-  // const [createBrand,created] = await Brand.findOrCreate({
-  //   name: data.name,
-  //   image: data.image
-  // });
+  const createBrand = await Brand.create({
+    name: data.name,
+    image: data.image
+  });
 
   res.json({
     status: 200,
-    message:"success",
-    data: created
-    })
+    message: "success",
+    data: createBrand
+  })
 })
 
 productRoute.get('/phone', async (req, res) => {
-   let phoneId = req.query.id;
+  let phoneId = req.query.id;
 
-    if(!phoneId){
-      phoneId = await Phone.findOne({
-        attributes: ['id']
-      });
-    }
-    try {
-      const result = await Phone.findOne({ 
-        where: { id:phoneId},
-        include: [
-          {
-            model: Brand,
-            attributes: ['name'],
-           
-          },
-          {
-            model: Capacity,
-            attributes: ['size'],
-
-          }
-        ],
-      });
-
-      if (!result) {
-        return res.status(404).json({ error: 'Phone not found' });
-      }
-      const data = {
-        model: result.model,
-        brand: result.brand ? result.brand.name : null,
-    
-      }
-
-      res.json({
-        message:"success",
-        status: 200,
-        data:result
-      });
-
-    } catch (error) {
-      res.json({
-        error:error.message
-      })
-    }
+  if (!phoneId) {
+    phoneId = await Phone.findOne({
+      attributes: ['id']
+    });
   }
+  try {
+    const result = await Phone.findOne({
+      where: { id: phoneId },
+      include: [
+        {
+          model: Brand,
+          attributes: ['name'],
+
+        },
+        {
+          model: Capacity,
+          attributes: ['size', 'release_price', 'second_price'],
+
+        }
+      ],
+    });
+
+    if (!result) {
+      return res.status(404).json({ error: 'Phone not found' });
+    }
+    const data = {
+      id: result.id,
+      name: result.name,
+      image: result.image,
+      release_date: result.release_date,
+      brand: result.brand.name,
+      capacities: result.capacities,
+
+
+
+    }
+
+    res.json({
+      message: "success",
+      status: 200,
+      data: data
+    });
+
+  } catch (error) {
+    res.json({
+      error: error.message
+    })
+  }
+}
 )
 
 productRoute.post("/create", async (req, res) => {
@@ -145,7 +145,7 @@ productRoute.post("/create", async (req, res) => {
     await phone.setBrand(brand.id);
     const capacities = phoneData.capacities;
 
-    let createCapacities=[];
+    let createCapacities = [];
     capacities.map(async (capacity) => {
       createCapacities.push(capacity.size);
       const data = capacity

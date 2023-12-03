@@ -19,7 +19,7 @@ const Homepage = () => {
           gap: 3,
           paddingX: 2,
           paddingTop: 5,
-          bgcolor: "#000",
+          bgcolor: "#fbfbfb",
           paddingBottom: "30px",
           height: 'auto',
           minHeight:'650px'

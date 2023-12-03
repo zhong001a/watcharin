@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
       'phone',
       {
   
-        model: { type: DataTypes.STRING(50), allowNull: false },
+
+        name: { type: DataTypes.STRING(50), allowNull: false },
         image: { type: DataTypes.STRING(256), allowNull: false },
         release_date:{ type: DataTypes.DATE, allowNull: true },
 
