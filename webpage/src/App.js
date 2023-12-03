@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from './layout/AppLayout';
-import Homepage from './pages/home/Homepage';
-import OfferPage from './pages/offer/OfferPage';
-import OfferDetail from './pages/offer/OfferDetail';
+import Homepage from './page/Hompage';
+
+import Offer from './page/Offer';
+
 
 const App = () => {
 
@@ -12,9 +13,7 @@ const App = () => {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Homepage />} />
-          <Route path="/offer" element={<OfferPage />} />
-          <Route path="/offer/detail" element={<OfferDetail />} />
-
+          <Route path="/offer" element={<Offer />} />
         </Route>
         <Route path="*" element={"NOT FOUND"} />
       </Routes>

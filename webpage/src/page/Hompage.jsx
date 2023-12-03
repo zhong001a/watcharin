@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import BrandIList from "./BrandIList.component";
-import { usePhones } from "../../hook/usePhonesData";
-import PhoneCard from "./PhoneCard";
+import BrandIList from "../feature/home/BrandIList.component";
+import { usePhones } from "../hook/usePhonesData";
+import PhoneCard from "../feature/product/PhoneCard"
 
 const Homepage = () => {
   const [select, setSelect] = useState("");
-  const { data } = usePhones();
+    const { data } = usePhones();
 
   return (
     <Box>

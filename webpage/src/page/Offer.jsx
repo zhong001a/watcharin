@@ -1,26 +1,26 @@
-import { Box } from "@mui/material";
 import React, { useReducer, useState } from "react";
-import { useSinglePhone } from "../../hook/usePhonesData";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import PhoneInfo from "./PhoneInfo";
-import CheckBox from "../../component/CheckBox";
+import { useSinglePhone } from "../hook/usePhonesData";
+import { Box } from "@mui/material";
+import PhoneInfo from "../feature/product/PhoneInfo";
+import ModalAlert from "../component/ModalAlert";
+import IButton from "../component/IButton";
+import CheckBox from "../component/CheckBox";
+import CheckList from "../component/CheckList";
+import CheckMultiList from "../component/CheckMultiList";
 import {
-  divice,
+  devices,
   screen,
   display,
   accessories,
   problem,
   model,
-} from "./Infomations";
-import CheckList from "../../component/CheckList";
-import CheckMultiList from "../../component/CheckMultiList";
-import IButton from "../../component/IButton";
-import ConfirmOffer from "./ConfirmOffer";
-
+} from "../feature/offer/Infomations";
+import ConfirmOffer from "../feature/offer/ConfirmOffer";
 const initialState = {
   capacity: "",
   model: "",
-  divice: "",
+  device: "",
   screen: "",
   accessories: [],
   problems: [],
@@ -66,12 +66,11 @@ const reducer = (state, action) => {
   }
 };
 
-const OfferPage = () => {
+const Offer = () => {
   const [params, setParams] = useSearchParams();
   const id = params.get("id");
   const { data } = useSinglePhone(id);
   const navigate = useNavigate();
-
 
   const [statedata, dispatch] = useReducer(reducer, initialState);
 
@@ -87,16 +86,20 @@ const OfferPage = () => {
     dispatch({ type: "setAccessory", payload: valume });
   };
 
-  const [ isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [text, setText] = useState("");
   const createOfferData = (stateData) => {
+    const requiredFields = ["capacity", "model", "device", "screen", "display"];
+    const missingField = requiredFields.find((field) => !stateData[field]);
 
-    setIsOpen(true);
-    // if (stateData) {
-    //   navigate("/offer/detail", { state: { stateData, phoneData: data } });
-    // }
+    if (missingField) {
+      setText(`${missingField}`);
+      setIsEmpty(true);
+    } else {
+      setIsOpen(true);
+    }
   };
-
-
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -113,10 +116,21 @@ const OfferPage = () => {
         sx={{
           flex: "1 1",
           bgcolor: "#fff",
-          justifyContent:'center'
+          justifyContent: "center",
         }}
       >
-      <ConfirmOffer isOpen={isOpen} setIsOpen={setIsOpen}/>
+        {isOpen?<ConfirmOffer
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            data={data}
+            state={statedata}
+          /> :null}
+
+    
+
+        <IButton onClick={() => createOfferData(statedata)} url={""}>
+          เสนอราคา
+        </IButton>
 
         <CheckBox
           textTitle={"ความจุ"}
@@ -136,10 +150,10 @@ const OfferPage = () => {
 
         <CheckList
           textTitle={"สภาพตัวเครื่อง"}
-          data={divice}
+          data={devices}
           selected={selected}
-          choosed={statedata.divice}
-          field={"divice"}
+          choosed={statedata.device}
+          field={"device"}
         />
 
         <CheckList
@@ -175,14 +189,11 @@ const OfferPage = () => {
             data={problem}
             choosed={statedata.problems}
           />
+          <ModalAlert isEmpty={isEmpty} setIsEmpty={setIsEmpty} text={text} />
         </Box>
-
-        <IButton onClick={() => createOfferData(statedata)} url={""}>
-          เสนอราคา
-        </IButton>
       </Box>
     </Box>
   );
 };
 
-export default OfferPage;
+export default Offer;
