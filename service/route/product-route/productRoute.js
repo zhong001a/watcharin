@@ -112,9 +112,6 @@ productRoute.get('/phone', async (req, res) => {
       release_date: result.release_date,
       brand: result.brand.name,
       capacities: result.capacities,
-
-
-
     }
 
     res.json({
@@ -128,8 +125,7 @@ productRoute.get('/phone', async (req, res) => {
       error: error.message
     })
   }
-}
-)
+})
 
 productRoute.post("/create", async (req, res) => {
   const phoneData = req.body;

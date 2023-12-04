@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       model: { type: DataTypes.STRING(128), allowNull: false },
       warranty: { type: DataTypes.STRING(128), allowNull: false },
-      divice: { type: DataTypes.STRING(128), allowNull: true },
+      device: { type: DataTypes.STRING(128), allowNull: true },
       screen: { type: DataTypes.STRING(128), allowNull: true },
       display: { type: DataTypes.STRING(128), allowNull: true },
 

@@ -1,15 +1,18 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import BrandIList from "../feature/home/BrandIList.component";
 import { usePhones } from "../hook/usePhonesData";
-import PhoneCard from "../feature/product/PhoneCard"
+import AllProduct from "../feature/shop/AllProduct";
+import BrandIList from "../feature/home/BrandIList.component";
 
-const Homepage = () => {
-  const [select, setSelect] = useState("");
+const Shop = () => {
   const { data } = usePhones();
-
+  const [select, setSelect] = useState("");
   return (
-    <Box>
+    <Box
+      sx={{
+        bgcolor: "#fbfbfb",
+      }}
+    >
       <BrandIList select={select} setSelect={setSelect} />
 
       <Box
@@ -21,16 +24,15 @@ const Homepage = () => {
           paddingTop: 5,
           bgcolor: "#fbfbfb",
           paddingBottom: "30px",
-          height: '100%',
-          minHeight:'650px'
-          
+          height: "100%",
+          minHeight: "650px",
         }}
       >
-        {data.map((phone, index) =>
+        {data.map((data, index) =>
           select === "" ? (
-            <PhoneCard key={index} phone={phone} />
-          ) : phone.brand === select ? (
-            <PhoneCard key={index} phone={phone} />
+            <AllProduct key={index} phone={data} />
+          ) : data.brand === select ? (
+            <AllProduct key={index} phone={data} />
           ) : null
         )}
       </Box>
@@ -38,4 +40,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Shop;

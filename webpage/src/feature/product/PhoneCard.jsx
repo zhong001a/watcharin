@@ -23,8 +23,10 @@ const PhoneCard = ({phone}) => {
 
         <img src={phone.image} width='100%' alt="" />
         <Typography sx={{
-          fontSize:'18px',
-          fontWeight:600
+               fontFamily: "Kanit, sans-serif",
+               fontSize: "24px",
+               fontWeight: 400,
+               color:'#000'
         }}>
             {phone.name}
         </Typography>

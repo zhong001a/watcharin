@@ -1,67 +1,82 @@
-import { Box,Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
-
   return (
-    <>
     <Box sx={{
-      width:'100%',
-      bgcolor:'#69afd1',
-      paddingY:'10px',
-      borderRadius:'5px',
-      boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+      marginY: '20px',
+      border:'1px solid #161c24',
+      borderRadius:'6px 6px 0px 0px'
     }}>
-      <Typography sx={{
-        fontSize:'18px',
-        fontWeight:500,
-        paddingLeft:'10px'
-      }}>
-        {textTitle }
-   
-      </Typography>
-    </Box>
-    <Box>
-      {data?.map((capacity,index)=>(
-        <Box  
-          key={index}
+      <Box
+        sx={{
+          width: "100%",
+          bgcolor: "#161c24",
+          paddingY: "10px",
+          borderRadius:'6px 6px 0px 0px',
+          color:'#fff',
+          boxShadow:
+            "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+        }}
+      >
+        <Typography
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100px",
-            height: "40px",
-            bgcolor: choosed === capacity.size ? "#161c24" : "#fbfbfb",
-            color: choosed === capacity.size ? "#fff" : "#161c24",
-            padding: "8px 25px",
-            border: "2px solid #fff",
-            fontSize: "24px",
-            fontWeight: 500,
-            borderRadius: "8px",
-            boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px",
-            transition:
-              "background-color 0.7s, box-shadow 0.1s, transform 0.3s",
-            "&:hover": {
-              bgcolor: "#161c24",
-              color: "#fff",
-              cursor: "pointer",
-              boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
-            },
-            "&:active": {
-              bgcolor: "#69afd1", // Change this to your desired active color
-              boxShadow: "none", // Remove box shadow on active
-              transform: "scale(1)", // Reset the scaling on active
-            },
-          }}
-          onClick={() => {
-            selected(capacity.size, field);
+            fontFamily: 'Kanit, sans-serif',
+            fontSize: "18px",
+            fontWeight: 400,
+            paddingLeft: "10px",
           }}
         >
-          {capacity.size}
-        </Box>
-      ))}
+          {textTitle}
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: 3,
+          marginY: "20px",
+          paddingLeft: "10px",
+        }}
+      >
+        {data?.map((capacity, index) => (
+          <Typography
+            key={index}
+            sx={{
+              minWidth: "160px",
+              maxWidth: "170px",
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              padding: "10px 15px",
+              bgcolor: choosed === capacity.size ? "#737373" : "#fbfbfb",
+              color: choosed === capacity.size ? "#fff" : "#161c24",
+           
+              border: "2px solid #fff",
+              fontFamily: 'Kanit, sans-serif',
+              fontSize: "18px",
+              fontWeight: 300,
+              borderRadius: "8px",
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px",
+              transition:
+                "background-color 0.7s, box-shadow 0.1s, transform 0.3s",
+              "&:hover": {
+                bgcolor: "#161c24",
+                color: "#fff",
+                cursor: "pointer",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
+              },
+            }}
+            onClick={() => {
+              selected(capacity.size, field);
+            }}
+          >
+            {capacity.size}
+          </Typography>
+        ))}
+      </Box>
     </Box>
-    </>
   );
 };
 

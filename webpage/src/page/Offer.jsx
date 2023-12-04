@@ -1,14 +1,15 @@
 import React, { useReducer, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useSinglePhone } from "../hook/usePhonesData";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import PhoneInfo from "../feature/product/PhoneInfo";
 import ModalAlert from "../component/ModalAlert";
-import IButton from "../component/IButton";
+
 import CheckBox from "../component/CheckBox";
 import CheckList from "../component/CheckList";
 import CheckMultiList from "../component/CheckMultiList";
 import {
+  
   devices,
   screen,
   display,
@@ -18,6 +19,7 @@ import {
 } from "../feature/offer/Infomations";
 import ConfirmOffer from "../feature/offer/ConfirmOffer";
 const initialState = {
+  warranty :"หมด",
   capacity: "",
   model: "",
   device: "",
@@ -70,7 +72,6 @@ const Offer = () => {
   const [params, setParams] = useSearchParams();
   const id = params.get("id");
   const { data } = useSinglePhone(id);
-  const navigate = useNavigate();
 
   const [statedata, dispatch] = useReducer(reducer, initialState);
 
@@ -102,7 +103,8 @@ const Offer = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",
+     }}>
       <Box
         sx={{
           bgcolor: "#fff",
@@ -119,18 +121,14 @@ const Offer = () => {
           justifyContent: "center",
         }}
       >
-        {isOpen?<ConfirmOffer
+        {isOpen ? (
+          <ConfirmOffer
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             data={data}
             state={statedata}
-          /> :null}
-
-    
-
-        <IButton onClick={() => createOfferData(statedata)} url={""}>
-          เสนอราคา
-        </IButton>
+          />
+        ) : null}
 
         <CheckBox
           textTitle={"ความจุ"}
@@ -189,6 +187,37 @@ const Offer = () => {
             data={problem}
             choosed={statedata.problems}
           />
+
+          <Box textAlign={'center'}>
+            <Button
+                  sx={{
+          
+                    minWidth:'170px',
+    
+                    bgcolor: "#161c24",
+                    padding: "10px 40px",
+                    fontFamily: "Kanit, sans-serif",
+                    fontSize: "20px",
+                    fontWeight: 300,
+                    borderRadius: "6px",
+                    color: "#fff",
+                    marginY:'20px',
+                    "&:hover": {
+                      bgcolor: "#fff",
+                      color: "#161c24",
+                      cursor: "pointer",
+                      boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
+                    },
+                  }}
+                  onClick={() => createOfferData(statedata)}
+                >
+                  ประเมินราคา
+                </Button>
+
+
+            
+          </Box>
+
           <ModalAlert isEmpty={isEmpty} setIsEmpty={setIsEmpty} text={text} />
         </Box>
       </Box>

@@ -25,7 +25,7 @@ const ModalAlert = ({ isEmpty, setIsEmpty, text }) => {
       >
        
         <Slide in={isEmpty}>
-      
+  
           <Box
             sx={{
               maxWidth: "500px",
@@ -44,6 +44,7 @@ const ModalAlert = ({ isEmpty, setIsEmpty, text }) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              borderTop:'30px solid #d00217'
             }}
             onClick={handleClose}
           >

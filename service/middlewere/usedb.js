@@ -2,25 +2,25 @@ const { Sequelize } = require('sequelize');
 
 // use in docker
 
-// const sequelize = new Sequelize('remo_db', 'root', 'root', {
-//   host: 'db',
-//   dialect: 'mysql',
-//   dialectOptions: {
-//     charset: 'utf8mb4', 
-//     collate: 'utf8mb4_general_ci' 
-//   }
-// })
-
-// use localhot
-
-const sequelize = new Sequelize('test', 'root', '', {
-  host: 'localhost',
+const sequelize = new Sequelize('remo_db', 'root', 'root', {
+  host: 'db',
   dialect: 'mysql',
   dialectOptions: {
     charset: 'utf8mb4', 
     collate: 'utf8mb4_general_ci' 
-  },
-});
+  }
+})
+
+// use localhot
+
+// const sequelize = new Sequelize('test', 'root', '', {
+//   host: 'localhost',
+//   dialect: 'mysql',
+//   dialectOptions: {
+//     charset: 'utf8mb4', 
+//     collate: 'utf8mb4_general_ci' 
+//   },
+// });
 
 const db = {};
 

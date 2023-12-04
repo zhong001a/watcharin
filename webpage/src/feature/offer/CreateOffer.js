@@ -48,9 +48,22 @@ const  CalPrice = (state, phonePrice) => {
     const screen =  checkScreen(state.screen, price);
     const display =  checkDisplay(state.display, price);
 
-    if (!state.problems.length) {
-        sell_price = price - (device + screen + display);
+    
+    sell_price = price - (device + screen + display)
+    if (state.problems.length === 1) {
+  
+        sell_price = sell_price - 2000
     }
+    else if (state.problems.length === 2) {
+ 
+        sell_price = sell_price - 4000
+    }
+    else if (state.problems.length === 3){
+        sell_price = 0
+    }
+    
+
+
 
     return sell_price;
 };

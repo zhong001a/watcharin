@@ -17,6 +17,7 @@ const BrandIList = ({ select, setSelect }) => {
                     bgcolor: text===select?'#fbfbfb':null,
                     borderTop:'5px solid #e8e8e8',
                     borderColor: text===select?'#161c24':null,
+                    cursor:'pointer'
                 }}
                 onClick={()=>{
                     setSelect(text)
