@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
       'brand',
       {
 
-        name: { type: DataTypes.STRING(255), allowNull: false },
+        name: { type: DataTypes.STRING(50), allowNull: false },
         image:{ type: DataTypes.STRING(255), allowNull: false } 
       },
       {

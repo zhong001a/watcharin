@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "4880ac79-223f-4003-9a0d-48ff6546e4fa",
+		"name": "RemoTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21426565"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/allproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"allproduct"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": "sumsung",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/allproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"allproduct"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": "sumsung",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInde One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/phone?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"phone"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"model\": \"Galaxy S23 Ultra\",\r\n        \"brand\": \"Sumsung\",\r\n        \"image\":\"https://remobie.s3.ap-southeast-1.amazonaws.com/1689829033494.png\",\r\n        \"release_date\":\"2023.10.04\",\r\n        \"capacities\": [\r\n            {\r\n                \"size\": \"256GB\",\r\n                \"release_price\": 41900,\r\n                \"second_price\": 20000\r\n            },\r\n            {\r\n                \"size\": \"512GB\",\r\n                \"release_price\": 47900,\r\n                \"second_price\": 22000\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/product/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Brand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/product/brand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\":\"Sumsung\",\r\n        \"image\":\"https://www.remobie.com/static/images/brand/samsung_logo_PNG8.png\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/product/brand/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"brand",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offer",
+			"item": [
+				{
+					"name": "All Offer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/offer/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"offer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Problem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/offer/problem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"offer",
+								"problem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/offer/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"offer",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One Offer",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Create Offer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"capacity\": \"256\",\r\n    \"model\": \"iphone 13\",\r\n    \"brand\":\"apple\",\r\n    \"sell_price\":20000,\r\n    \"warranty\": \"ประกันเหลือมากกว่า 4 เดือน\",\r\n    \"divice\": \"ไม่มีรอยขีดข่วน\",\r\n    \"screen\": \"หน้าจอไม่มีรอย\",\r\n    \"accessories\": [\r\n        \"ไม่มีหัวชาร์จ\",\r\n        \"ไม่มีสายชาร์จ\",\r\n        \"ไม่มีกล่อง\"\r\n    ],\r\n    \"problems\": [\r\n        \"แบตเตอรี่ ต่ำกว่า 80%\",\r\n        \"ระบบสัมผัส\"\r\n    ],\r\n    \"display\": \"แสดงภาพหน้าจอปกติ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/offer/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"offer",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

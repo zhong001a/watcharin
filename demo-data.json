@@ -1,4 +1,14 @@
 [
+  
+  {
+    "name": "Apple",
+    "image": "https://www.remobie.com/static/images/brand/apple.png"
+  },
+  {
+    "name": "Sumsung",
+    "image": "https://www.remobie.com/static/images/brand/samsung_logo_PNG8.png"
+  },
+
   {
     "name": "Iphone 13",
     "brand": "Apple",
@@ -70,14 +80,6 @@
         "second_price": 22000
       }
     ]
-  },
-  {
-    "name": "Apple",
-    "image": "https://www.remobie.com/static/images/brand/apple.png"
-  },
-  {
-    "name": "Sumsung",
-    "image": "https://www.remobie.com/static/images/brand/samsung_logo_PNG8.png"
   },
 
   {
