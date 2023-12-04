@@ -1,5 +1,5 @@
 [
-  
+
   {
     "name": "Apple",
     "image": "https://www.remobie.com/static/images/brand/apple.png"
@@ -80,27 +80,5 @@
         "second_price": 22000
       }
     ]
-  },
-
-  {
-    "capacity": "128GB",
-    "model": "LL",
-    "warranty": "ประกันเหลือมากกว่า 4 เดือน",
-    "divice": "ไม่มีรอยขีดข่วน",
-    "screen": "หน้าจอมีรอยบางๆ",
-    "accessories": ["ไม่มีสายชาร์จ"],
-    "problems": ["wifi Bluetooth GPS"],
-    "display": "จุด Bright / ฝุ่นในจอ / ขอบจอเงา",
-    "name": "Iphone 13",
-    "brand": "Apple",
-    "sell_price": {
-      "size": "128GB",
-      "release_price": 24900,
-      "second_price": 13000
-    },
-    "seller": "watchar",
-    "phone_no": "08445533"
-  },
-
-  { "model": "TH LL OTHER" }
+  }
 ]
