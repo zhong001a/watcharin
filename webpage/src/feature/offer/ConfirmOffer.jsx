@@ -158,8 +158,8 @@ const ConfirmOffer = ({ isOpen, setIsOpen, data, state }) => {
 
                 <Button
                   sx={{
+                    display:offer.sell_price===0?"none":null,
                     minWidth: "170px",
-
                     bgcolor: "#161c24",
                     padding: "10px 40px",
                     fontFamily: "Kanit, sans-serif",
@@ -175,6 +175,7 @@ const ConfirmOffer = ({ isOpen, setIsOpen, data, state }) => {
                       boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
                     },
                   }}
+  
                   onClick={() => {
                     saveOffer(offer);
                   }}

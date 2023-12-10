@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const CheckList = ({ textTitle, data, selected, choosed, field }) => {
+const CheckList = ({ textTitle, data, setDetail, choosed, field }) => {
   return (
     <Box
       sx={{
@@ -75,7 +75,7 @@ const CheckList = ({ textTitle, data, selected, choosed, field }) => {
                 },
               }}
               onClick={() => {
-                selected(text, field);
+                setDetail(text, field);
               }}
               key={index}
             >

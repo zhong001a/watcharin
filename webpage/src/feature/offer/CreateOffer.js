@@ -50,21 +50,23 @@ const  CalPrice = (state, phonePrice) => {
 
     
     sell_price = price - (device + screen + display)
-    if (state.problems.length === 1) {
-  
-        sell_price = sell_price - 2000
+
+    if (state.problems.length === 1 ) {
+        // state.problems.map((problem)=>{
+        //     if(problem.includes("ตกน้ำ")){
+        //         return  0
+        //     }
+        // })
+        sell_price = sell_price * 2000
     }
     else if (state.problems.length === 2) {
  
         sell_price = sell_price - 4000
     }
-    else if (state.problems.length === 3){
+    else if (state.problems.length >= 3){
         sell_price = 0
     }
     
-
-
-
     return sell_price;
 };
 

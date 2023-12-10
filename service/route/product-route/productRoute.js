@@ -164,6 +164,17 @@ productRoute.post("/create", async (req, res) => {
   }
 });
 
+productRoute.delete("/delete/:id", async (req, res) => {
+  const phoneId = req.params.id;
+  const removed = await Phone.destroy({
+    where: {
+      id: phoneId
+    },
+  });
+  res.json(removed)
+
+})
+
 
 module.exports = productRoute;
 

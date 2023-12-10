@@ -1,8 +1,10 @@
-import { Box, TableCell, TableRow } from "@mui/material";
+import { TableCell, TableRow } from "@mui/material";
 import React from "react";
-
+// import { useLocation } from 'react-router-dom';
 const OfferList = ({ offer }) => {
-
+    // const location = useLocation()
+    // const latedOffer = location.state.data;
+   
     return (
         <TableRow sx={{}}>
         <TableCell component="th" scope="row">

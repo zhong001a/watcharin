@@ -7,7 +7,7 @@ import PhoneCard from "../feature/product/PhoneCard"
 const Homepage = () => {
   const [select, setSelect] = useState("");
   const { data } = usePhones();
-
+  console.log(select)
   return (
     <Box>
       <BrandIList select={select} setSelect={setSelect} />

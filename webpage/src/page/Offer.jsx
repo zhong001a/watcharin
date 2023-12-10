@@ -9,7 +9,6 @@ import CheckBox from "../component/CheckBox";
 import CheckList from "../component/CheckList";
 import CheckMultiList from "../component/CheckMultiList";
 import {
-  
   devices,
   screen,
   display,
@@ -19,7 +18,7 @@ import {
 } from "../feature/offer/Infomations";
 import ConfirmOffer from "../feature/offer/ConfirmOffer";
 const initialState = {
-  warranty :"หมด",
+  warranty: "หมด",
   capacity: "",
   model: "",
   device: "",
@@ -30,7 +29,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "addDetail":
+    case "setDetail":
       return { ...state, [action.field]: action.payload };
 
     case "addProblem":
@@ -38,6 +37,10 @@ const reducer = (state, action) => {
 
       let updatedProblems;
 
+      if (updatedProblems.includes("ไม่มีปัญหา")) {
+        updatedProblems = [];
+      }
+      
       if (existProblem !== -1) {
         updatedProblems = state.problems.filter(
           (problem) => problem !== action.payload
@@ -45,9 +48,7 @@ const reducer = (state, action) => {
       } else {
         updatedProblems = [...state.problems, action.payload];
       }
-      if (updatedProblems.includes("ไม่มีปัญหา")) {
-        updatedProblems = [];
-      }
+
       return { ...state, problems: updatedProblems };
 
     case "setAccessory":
@@ -75,8 +76,8 @@ const Offer = () => {
 
   const [statedata, dispatch] = useReducer(reducer, initialState);
 
-  const selected = (val, field) => {
-    dispatch({ type: "addDetail", payload: val, field: field });
+  const setDetail = (val, field) => {
+    dispatch({ type: "setDetail", payload: val, field: field });
   };
 
   const setProblem = (valume) => {
@@ -103,15 +104,14 @@ const Offer = () => {
   };
 
   return (
-    <Box sx={{ display: "flex",
-     }}>
+    <Box sx={{ display: "flex" }}>
       <Box
         sx={{
           bgcolor: "#fff",
           flexBasis: "250px",
         }}
       >
-        <PhoneInfo phone={data} />
+        <PhoneInfo phone={data} detail={statedata} />
       </Box>
 
       <Box
@@ -133,7 +133,7 @@ const Offer = () => {
         <CheckBox
           textTitle={"ความจุ"}
           data={data.capacities}
-          selected={selected}
+          setDetail={setDetail}
           choosed={statedata.capacity}
           field={"capacity"}
         />
@@ -141,7 +141,7 @@ const Offer = () => {
         <CheckList
           textTitle={"โมเดล"}
           data={model}
-          selected={selected}
+          setDetail={setDetail}
           choosed={statedata.model}
           field={"model"}
         />
@@ -149,7 +149,7 @@ const Offer = () => {
         <CheckList
           textTitle={"สภาพตัวเครื่อง"}
           data={devices}
-          selected={selected}
+          setDetail={setDetail}
           choosed={statedata.device}
           field={"device"}
         />
@@ -157,14 +157,14 @@ const Offer = () => {
         <CheckList
           textTitle={"หน้าจอ"}
           data={screen}
-          selected={selected}
+          setDetail={setDetail}
           choosed={statedata.screen}
           field={"screen"}
         />
         <CheckList
           textTitle={"การแสดงผล"}
           data={display}
-          selected={selected}
+          setDetail={setDetail}
           choosed={statedata.display}
           field={"display"}
         />
@@ -188,34 +188,30 @@ const Offer = () => {
             choosed={statedata.problems}
           />
 
-          <Box textAlign={'center'}>
+          <Box textAlign={"center"}>
             <Button
-                  sx={{
-          
-                    minWidth:'170px',
-    
-                    bgcolor: "#161c24",
-                    padding: "10px 40px",
-                    fontFamily: "Kanit, sans-serif",
-                    fontSize: "20px",
-                    fontWeight: 300,
-                    borderRadius: "6px",
-                    color: "#fff",
-                    marginY:'20px',
-                    "&:hover": {
-                      bgcolor: "#fff",
-                      color: "#161c24",
-                      cursor: "pointer",
-                      boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
-                    },
-                  }}
-                  onClick={() => createOfferData(statedata)}
-                >
-                  ประเมินราคา
-                </Button>
+              sx={{
+                minWidth: "170px",
 
-
-            
+                bgcolor: "#161c24",
+                padding: "10px 40px",
+                fontFamily: "Kanit, sans-serif",
+                fontSize: "20px",
+                fontWeight: 300,
+                borderRadius: "6px",
+                color: "#fff",
+                marginY: "20px",
+                "&:hover": {
+                  bgcolor: "#fff",
+                  color: "#161c24",
+                  cursor: "pointer",
+                  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add box shadow on hover
+                },
+              }}
+              onClick={() => createOfferData(statedata)}
+            >
+              ประเมินราคา
+            </Button>
           </Box>
 
           <ModalAlert isEmpty={isEmpty} setIsEmpty={setIsEmpty} text={text} />
