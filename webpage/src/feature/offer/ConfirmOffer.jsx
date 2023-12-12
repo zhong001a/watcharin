@@ -24,6 +24,7 @@ const fontStyleHead = {
 
 const ConfirmOffer = ({ isOpen, setIsOpen, data, state }) => {
   const handleClose = () => setIsOpen(false);
+  
   const offer = OfferDetail(data, state);
   const navigate = useNavigate();
   const saveOffer = async(offer) => {
@@ -118,7 +119,7 @@ const ConfirmOffer = ({ isOpen, setIsOpen, data, state }) => {
                   fontWeight: 400,
                   marginTop:'10px'
                 }}>
-                  ลายละเอียด {offer.deivice} {offer.screen} {offer.display} ปัญหา {offer.problems.length} อย่าง
+                รายละเอียด {offer.device} {offer.screen} {offer.display} ปัญหา {offer.problems.length} อย่าง
                
 
                 </Typography>

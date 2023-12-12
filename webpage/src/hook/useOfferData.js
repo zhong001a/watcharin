@@ -41,6 +41,23 @@ export const useSingleOffer = (id)=>{
   if(data?.status === 200){
     offer = data.data || []
   }
-  return { data: offer }
+  return offer
 }
+
+export const deleteOffer = async (id)=>{
+  try {
+    
+    await fetch(`${API_URL}/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+  
+      },
+    });
+  } catch (error) {
+    console.error('Error deleting data:', error);
+  }
+}
+
+// http://localhost:8000/api/offer/delete/1
 

@@ -4,10 +4,10 @@ import { useSinglePhone } from "../hook/usePhonesData";
 import { Box, Button } from "@mui/material";
 import PhoneInfo from "../feature/product/PhoneInfo";
 import ModalAlert from "../component/ModalAlert";
-
 import CheckBox from "../component/CheckBox";
 import CheckList from "../component/CheckList";
 import CheckMultiList from "../component/CheckMultiList";
+
 import {
   devices,
   screen,
@@ -17,6 +17,7 @@ import {
   model,
 } from "../feature/offer/Infomations";
 import ConfirmOffer from "../feature/offer/ConfirmOffer";
+
 const initialState = {
   warranty: "หมด",
   capacity: "",
@@ -32,25 +33,6 @@ const reducer = (state, action) => {
     case "setDetail":
       return { ...state, [action.field]: action.payload };
 
-    case "addProblem":
-      const existProblem = state.problems.indexOf(action.payload);
-
-      let updatedProblems;
-
-      if (updatedProblems.includes("ไม่มีปัญหา")) {
-        updatedProblems = [];
-      }
-      
-      if (existProblem !== -1) {
-        updatedProblems = state.problems.filter(
-          (problem) => problem !== action.payload
-        );
-      } else {
-        updatedProblems = [...state.problems, action.payload];
-      }
-
-      return { ...state, problems: updatedProblems };
-
     case "setAccessory":
       const existAccessory = state.accessories.indexOf(action.payload);
       let updataAccesories;
@@ -63,6 +45,26 @@ const reducer = (state, action) => {
         updataAccesories = [...state.accessories, action.payload];
       }
       return { ...state, accessories: updataAccesories };
+
+    case "addProblem":
+      const existProblem = state.problems.indexOf(action.payload);
+      let updatedProblems = [];
+ 
+      if (existProblem !== -1) {
+        updatedProblems = state.problems.filter(
+          (problem) => problem !== action.payload
+        );
+
+      } else {
+        updatedProblems = [...state.problems, action.payload];
+      }
+
+      if (updatedProblems.includes("ไม่มีปัญหา")) {
+        updatedProblems = [];
+      }
+
+      // console.log("update problem",updatedProblems)
+      return { ...state, problems: updatedProblems };
 
     default:
       throw new Error("Unknow action");
@@ -80,12 +82,12 @@ const Offer = () => {
     dispatch({ type: "setDetail", payload: val, field: field });
   };
 
-  const setProblem = (valume) => {
-    dispatch({ type: "addProblem", payload: valume });
-  };
-
   const setAccessory = (valume) => {
     dispatch({ type: "setAccessory", payload: valume });
+  };
+
+  const setProblem = (valume) => {
+    dispatch({ type: "addProblem", payload: valume });
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -113,7 +115,6 @@ const Offer = () => {
       >
         <PhoneInfo phone={data} detail={statedata} />
       </Box>
-
       <Box
         sx={{
           flex: "1 1",
@@ -121,15 +122,6 @@ const Offer = () => {
           justifyContent: "center",
         }}
       >
-        {isOpen ? (
-          <ConfirmOffer
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            data={data}
-            state={statedata}
-          />
-        ) : null}
-
         <CheckBox
           textTitle={"ความจุ"}
           data={data.capacities}
@@ -215,6 +207,15 @@ const Offer = () => {
           </Box>
 
           <ModalAlert isEmpty={isEmpty} setIsEmpty={setIsEmpty} text={text} />
+
+          {isOpen ? (
+            <ConfirmOffer
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              data={data}
+              state={statedata}
+            />
+          ) : null}
         </Box>
       </Box>
     </Box>

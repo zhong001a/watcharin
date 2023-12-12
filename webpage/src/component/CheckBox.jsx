@@ -1,7 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
-const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
+const CheckBox = ({ textTitle, data, choosed, setDetail, field }) => {
+  const [isToggled, setIsToggled] = useState(true);
+
+  const toggleState = () => {
+    setIsToggled(!isToggled);
+  };
   return (
     <Box sx={{
       marginY: '20px',
@@ -17,23 +22,42 @@ const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
           color:'#fff',
           boxShadow:
             "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+            cursor:'pointer'
         }}
+        onClick={() => {
+          toggleState();
+        }}
+
       >
-        <Typography
-          sx={{
-            fontFamily: 'Kanit, sans-serif',
-            fontSize: "18px",
-            fontWeight: 400,
-            paddingLeft: "10px",
-          }}
-        >
-          {textTitle}
-        </Typography>
+       <Box sx={{
+          display:'flex',
+          justifyContent:'space-between'
+        }}>
+          <Typography
+            sx={{
+              fontFamily: "Kanit, sans-serif",
+              fontSize: "18px",
+              fontWeight: 400,
+              paddingLeft: "10px",
+            }}
+
+          >
+            {textTitle}
+          </Typography>
+          <Typography
+            sx={{
+              paddingRight: "15px",
+              color:'#fff'
+            }}
+          >
+            {isToggled ?  "▬" : "▼"}
+          </Typography>
+          </Box>
       </Box>
 
       <Box
         sx={{
-          display: "flex",
+          display: isToggled ?  "flex" : "none",
           gap: 3,
           marginY: "20px",
           paddingLeft: "10px",
@@ -52,7 +76,6 @@ const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
               padding: "10px 15px",
               bgcolor: choosed === capacity.size ? "#737373" : "#fbfbfb",
               color: choosed === capacity.size ? "#fff" : "#161c24",
-           
               border: "2px solid #fff",
               fontFamily: 'Kanit, sans-serif',
               fontSize: "18px",
@@ -69,7 +92,7 @@ const CheckBox = ({ textTitle, data, choosed, selected, field }) => {
               },
             }}
             onClick={() => {
-              selected(capacity.size, field);
+              setDetail(capacity.size, field);
             }}
           >
             {capacity.size}

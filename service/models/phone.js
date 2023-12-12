@@ -2,9 +2,7 @@ module.exports = (sequelize, DataTypes) => {
     const phone = sequelize.define(
       'phone',
       {
-  
-
-        name: { type: DataTypes.STRING(50), allowNull: false },
+        name: { type: DataTypes.STRING(50), allowNull: false, unique: true },
         image: { type: DataTypes.STRING(256), allowNull: false },
         release_date:{ type: DataTypes.DATE, allowNull: true },
 

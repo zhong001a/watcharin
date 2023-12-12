@@ -36,20 +36,18 @@ const checkDisplay = (display, price) => {
 
 const  CalPrice = (state, phonePrice) => {
     let sell_price = 0;
-    let price = phonePrice;
 
     if (state.model.includes("LL") || state.model.includes("OTHER")) {
-        price = phonePrice * 0.5;
+        phonePrice = phonePrice * 0.5;
         if (state.problems.length) {
             return 0;
         }
     }
-    const device =  checkDevice(state.device, price);
-    const screen =  checkScreen(state.screen, price);
-    const display =  checkDisplay(state.display, price);
+    const device =  checkDevice(state.device, phonePrice);
+    const screen =  checkScreen(state.screen, phonePrice);
+    const display =  checkDisplay(state.display, phonePrice);
 
-    
-    sell_price = price - (device + screen + display)
+    sell_price = phonePrice - (device + screen + display)
 
     if (state.problems.length === 1 ) {
         // state.problems.map((problem)=>{
@@ -57,11 +55,11 @@ const  CalPrice = (state, phonePrice) => {
         //         return  0
         //     }
         // })
-        sell_price = sell_price * 2000
+        sell_price = sell_price - 2000
     }
     else if (state.problems.length === 2) {
  
-        sell_price = sell_price - 4000
+        sell_price = sell_price - 5000
     }
     else if (state.problems.length >= 3){
         sell_price = 0
@@ -72,6 +70,7 @@ const  CalPrice = (state, phonePrice) => {
 
 const EditOffer = (state, data) => {
     const dataCapacity = data.capacities?.find((p) => p.size === state.capacity);
+
     const sellPrice = CalPrice(state, dataCapacity?.second_price);
 
     const offerData = {
@@ -89,6 +88,7 @@ const EditOffer = (state, data) => {
 export const OfferDetail = (data,state) => {
 
     let offerData;
+
     if(data&&state){
         offerData = EditOffer(state, data);
     }

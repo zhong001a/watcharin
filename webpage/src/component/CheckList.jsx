@@ -1,7 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const CheckList = ({ textTitle, data, setDetail, choosed, field }) => {
+  const [isToggled, setIsToggled] = useState(true);
+
+  const toggleState = () => {
+    setIsToggled(!isToggled);
+  };
   return (
     <Box
       sx={{
@@ -20,24 +25,42 @@ const CheckList = ({ textTitle, data, setDetail, choosed, field }) => {
           color: "#fff",
           boxShadow:
             "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+          cursor:'pointer'
+        }}
+        onClick={() => {
+          toggleState();
         }}
       >
-        <Typography
-          sx={{
-            fontFamily: 'Kanit, sans-serif',
-            fontSize: "20px",
-            fontWeight: 400,
-            paddingLeft: "10px",
-   
-          }}
-        >
-          {textTitle}
-        </Typography>
+        <Box sx={{
+          display:'flex',
+          justifyContent:'space-between'
+        }}>
+          <Typography
+            sx={{
+              fontFamily: "Kanit, sans-serif",
+              fontSize: "18px",
+              fontWeight: 400,
+              paddingLeft: "10px",
+            }}
+
+          >
+            {textTitle}
+          </Typography>
+          <Typography
+            sx={{
+              paddingRight: "15px",
+              color:'#fff'
+            }}
+          >
+            {isToggled ?  "▬" : "▼"}
+          </Typography>
+        </Box>
+        
       </Box>
 
       <Box
         sx={{
-          display: "flex",
+          display: isToggled ?  "flex" : "none",
           gap: 3,
           marginTop: "20px",
           marginBottom: "40px",

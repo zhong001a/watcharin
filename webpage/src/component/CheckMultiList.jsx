@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 
+
 const CheckMultiList = ({ textTitle, data, setProblem, choosed }) => {
   const isSelected = (item) => choosed?.some((c) => c === item);
   const [isToggled, setIsToggled] = useState(false);
@@ -62,8 +63,10 @@ const CheckMultiList = ({ textTitle, data, setProblem, choosed }) => {
           gap: 2,
           marginTop: "15px",
           paddingLeft: "10px",
-          transition:
-          "background-color 0.7s, box-shadow 0.1s, transform 0.3s",
+
+          transform: 'translateY(10px)',
+          transition: 'display 1s ease',
+
         }}
       >
         {data &&

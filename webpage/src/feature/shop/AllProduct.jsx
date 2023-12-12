@@ -12,7 +12,7 @@ const fontStyle = {
 const AllProduct = ({ phone }) => {
   return (
     <Box>
-      <Link to={`/offer?id=${phone.id}`} style={{ textDecoration: "none",color:'#000' }}>
+      <Link to={`/product?id=${phone.id}`} style={{ textDecoration: "none",color:'#000' }}>
         <Box
           sx={{
             bgcolor: "#fff",

@@ -19,8 +19,6 @@ app.get('/first', (req, res) => {
   })
 })
 
-
-
 const port = 8000;
 app.listen(port, async () => {
   console.log(`Server running at http://localhost:${port}/`)

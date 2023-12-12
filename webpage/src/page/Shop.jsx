@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { usePhones } from "../hook/usePhonesData";
 import AllProduct from "../feature/shop/AllProduct";
-import BrandIList from "../feature/home/BrandIList.component";
+import BrandIList from "../component/BrandLise";
 
 const Shop = () => {
   const { data } = usePhones();
@@ -10,11 +10,11 @@ const Shop = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#fbfbfb",
+        bgcolor: "#e8e8e8",
       }}
     >
-      <BrandIList select={select} setSelect={setSelect} />
 
+      <BrandIList select={select} setSelect={setSelect}/>
       <Box
         sx={{
           display: "grid",
