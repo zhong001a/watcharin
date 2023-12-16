@@ -1,16 +1,26 @@
 
-async function getProduct() {
-    const response = await fetch('http://localhost:3010/product/allproduct')
-    console.log(response.data )
-    return "data"
-}
+import ProductItem from "../component/ProductItem";
+import { getProducts } from "../server/actions";
 
 const page = async() => {
-  const data = getProduct();
+  const products = await getProducts();
+
   
   return (
-    <div>{}</div>
-  )
+    <div>
+
+
+      {products.map((product: any, index: number) => (
+        <div key={index}>
+          <ProductItem product={product} />
+        </div>
+
+      ))}
+    
+
+    </div>
+  );
 }
 
 export default page
+

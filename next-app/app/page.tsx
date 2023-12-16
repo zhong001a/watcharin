@@ -1,21 +1,16 @@
-
-import { Box } from "@mui/material";
-import { getProducts } from "./server/product/actions";
-import { useQuery } from "@tanstack/react-query";
-
+import { getProducts } from "./server/actions";
+import ProductItem from "./component/ProductItem";
 export default async function Home() {
+  const products = await getProducts();
 
-  const { data,error, isLoading } = useQuery({
-      queryKey:['products'],
-      queryFn: getProducts,
-  })
-  console.log(data)
-  if(isLoading) return <h2>Loding...</h2>
-  if(error) return <h2>{error.message}</h2>
-
+  
   return (
-    <Box>
-     
-    </Box>
-  )
+    <div>
+      {products.map((product: any, index: number) => (
+        <div key={index}>
+          <ProductItem product={product} />
+        </div>
+      ))}
+    </div>
+  );
 }
